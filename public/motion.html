@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motion</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+
+<body>
+    <button onclick="connectSerial()">Connect</button>
+    <br>
+    <input type="text" name="" id="command">
+    <!-- <button onclick="sendCommand()">Send</button> -->
+    <p id="step">Step Opened : Belum ada</p>
+    <br><br>
+
+    <div class="d-flex">
+        <select class="form-select me-3" aria-label="Default select example" style="width: 200px" id="walk-select">
+            <option selected value="right-selected">Right</option>
+            <option value="left-selected">Left</option>
+        </select>
+        <button class="btn btn-primary me-3" onclick="play()">Play</button>
+        <button class="btn btn-warning" onclick="read()">On</button>
+        <button class="btn btn-danger" onclick="off()">Off</button>
+        <button class="btn btn-dark" onclick="save()">Save</button>
+        <button class="btn btn-dark" onclick="check()">Check all</button>
+        <button class="btn btn-dark" onclick="uncheck()">Uncheck all</button>
+        <button class="btn btn-dark" onclick="generate()">Generate</button>
+        <button class="btn btn-dark" onclick="newWalk()">New</button>
+
+    </div>
+
+    <br>
+
+    <div class="row">
+        <div class="col-4">
+            <table class="table">
+                <tr>
+                    <th>Step</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td>Step 0</td>
+                    <td>
+                        <button class="btn btn-warning" onclick="openStep(0)">Open</button>
+                        <button class="btn btn-primary" onclick="playStep(0)">Play</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Step 1</td>
+                    <td>
+                        <button class="btn btn-warning" onclick="openStep(1)">Open</button>
+                        <button class="btn btn-primary" onclick="playStep(1)">Play</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Step 2</td>
+                    <td>
+                        <button class="btn btn-warning" onclick="openStep(2)">Open</button>
+                        <button class="btn btn-primary" onclick="playStep(2)">Play</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Step 3</td>
+                    <td>
+                        <button class="btn btn-warning" onclick="openStep(3)">Open</button>
+                        <button class="btn btn-primary" onclick="playStep(3)">Play</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Step 4</td>
+                    <td>
+                        <button class="btn btn-warning" onclick="openStep(4)">Open</button>
+                        <button class="btn btn-primary" onclick="playStep(4)">Play</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Step 5</td>
+                    <td>
+                        <button class="btn btn-warning" onclick="openStep(5)">Open</button>
+                        <button class="btn btn-primary" onclick="playStep(5)">Play</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Step 6</td>
+                    <td>
+                        <button class="btn btn-warning" onclick="openStep(6)">Open</button>
+                        <button class="btn btn-primary" onclick="playStep(6)">Play</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-4">
+            <table class="table" id="openStep-table">
+                <tr>
+                    <th>ID</th>
+                    <th>Value</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td><input type="text" name="" id="open-9"></td>
+                    <td>
+                        <button class="btn btn-outline-primary" style="height: 30px;"
+                            onclick="saveStep(9)">Save</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td><input type="text" name="" id="open-10"></td>
+                    <td>
+                        <button class="btn btn-outline-primary" style="height: 30px;"
+                            onclick="saveStep(10)">Save</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td><input type="text" name="" id="open-11"></td>
+                    <td>
+                        <button class="btn btn-outline-primary" style="height: 30px;"
+                            onclick="saveStep(11)">Save</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td><input type="text" name="" id="open-12"></td>
+                    <td>
+                        <button class="btn btn-outline-primary" style="height: 30px;"
+                            onclick="saveStep(12)">Save</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td><input type="text" name="" id="open-13"></td>
+                    <td>
+                        <button class="btn btn-outline-primary" style="height: 30px;"
+                            onclick="saveStep(13)">Save</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td><input type="text" name="" id="open-14"></td>
+                    <td>
+                        <button class="btn btn-outline-primary" style="height: 30px;"
+                            onclick="saveStep(14)">Save</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td><input type="text" name="" id="open-15"></td>
+                    <td>
+                        <button class="btn btn-outline-primary" style="height: 30px;"
+                            onclick="saveStep(15)">Save</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td><input type="text" name="" id="open-16"></td>
+                    <td>
+                        <button class="btn btn-outline-primary" style="height: 30px;"
+                            onclick="saveStep(16)">Save</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>17</td>
+                    <td><input type="text" name="" id="open-17"></td>
+                    <td>
+                        <button class="btn btn-outline-primary" style="height: 30px;"
+                            onclick="saveStep(17)">Save</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>18</td>
+                    <td><input type="text" name="" id="open-18"></td>
+                    <td>
+                        <button class="btn btn-outline-primary" style="height: 30px;"
+                            onclick="saveStep(18)">Save</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>19</td>
+                    <td><input type="text" name="" id="open-19"></td>
+                    <td>
+                        <button class="btn btn-outline-primary" style="height: 30px;"
+                            onclick="saveStep(19)">Save</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>20</td>
+                    <td><input type="text" name="" id="open-20"></td>
+                    <td>
+                        <button class="btn btn-outline-primary" style="height: 30px;"
+                            onclick="saveStep(20)">Save</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>21</td>
+                    <td><input type="text" name="" id="open-21"></td>
+                    <td>
+                        <button class="btn btn-outline-primary" style="height: 30px;"
+                            onclick="saveStep(21)">Save</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>22</td>
+                    <td><input type="text" name="" id="open-22"></td>
+                    <td>
+                        <button class="btn btn-outline-primary" style="height: 30px;"
+                            onclick="saveStep(22)">Save</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-4">
+            <table class="table" id="readStep-table">
+                <tr>
+                    <th>ID</th>
+                    <th>Value</th>
+                    <th>Check</th>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td id="9"></td>
+                    <td>
+                        <div class="form-check mt-1"><input class="form-check-input" type="checkbox" value=""
+                                id="check-9"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td id="10"></td>
+                    <td>
+                        <div class="form-check mt-1"><input class="form-check-input" type="checkbox" value=""
+                                id="check-10"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td id="11"></td>
+                    <td>
+                        <div class="form-check mt-1"><input class="form-check-input" type="checkbox" value=""
+                                id="check-11"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td id="12"></td>
+                    <td>
+                        <div class="form-check mt-1"><input class="form-check-input" type="checkbox" value=""
+                                id="check-12"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td id="13"></td>
+                    <td>
+                        <div class="form-check mt-1"><input class="form-check-input" type="checkbox" value=""
+                                id="check-13"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td id="14"></td>
+                    <td>
+                        <div class="form-check mt-1"><input class="form-check-input" type="checkbox" value=""
+                                id="check-14"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td id="15"></td>
+                    <td>
+                        <div class="form-check mt-1"><input class="form-check-input" type="checkbox" value=""
+                                id="check-15"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td id="16"></td>
+                    <td>
+                        <div class="form-check mt-1"><input class="form-check-input" type="checkbox" value=""
+                                id="check-16"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>17</td>
+                    <td id="17"></td>
+                    <td>
+                        <div class="form-check mt-1"><input class="form-check-input" type="checkbox" value=""
+                                id="check-17"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>18</td>
+                    <td id="18"></td>
+                    <td>
+                        <div class="form-check mt-1"><input class="form-check-input" type="checkbox" value=""
+                                id="check-18"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>19</td>
+                    <td id="19"></td>
+                    <td>
+                        <div class="form-check mt-1"><input class="form-check-input" type="checkbox" value=""
+                                id="check-19"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>20</td>
+                    <td id="20"></td>
+                    <td>
+                        <div class="form-check mt-1"><input class="form-check-input" type="checkbox" value=""
+                                id="check-20"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>21</td>
+                    <td id="21"></td>
+                    <td>
+                        <div class="form-check mt-1"><input class="form-check-input" type="checkbox" value=""
+                                id="check-21"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>22</td>
+                    <td id="22"></td>
+                    <td>
+                        <div class="form-check mt-1"><input class="form-check-input" type="checkbox" value=""
+                                id="check-22"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+    <script src="play.js"></script>
+</body>
+
+</html>

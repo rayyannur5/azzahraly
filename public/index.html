@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Azzahraly Code Generator</title>
+</head>
+
+<body>
+  <form onsubmit="return false">
+    <select name="walk-type" id="walk-type">
+      <option value="right">Right</option>
+      <option value="left">Left</option>
+    </select>
+    <a href="motion.html">Motion</a>
+    <br />
+    <label for="step0">Step 0</label>
+    <textarea name="step" id="step0" cols="10" rows="10" required></textarea>
+    <label for="step1">Step 1</label>
+    <textarea name="step" id="step1" cols="10" rows="10" required></textarea>
+    <label for="step2">Step 2</label>
+    <textarea name="step" id="step2" cols="10" rows="10" required></textarea>
+    <label for="step3">Step 3</label>
+    <textarea name="step" id="step3" cols="10" rows="10" required></textarea>
+    <label for="step4">Step 4</label>
+    <textarea name="step" id="step4" cols="10" rows="10" required></textarea>
+    <label for="step5">Step 5</label>
+    <textarea name="step" id="step5" cols="10" rows="10" required></textarea>
+    <label for="step6">Step 6</label>
+    <textarea name="step" id="step6" cols="10" rows="10" required></textarea>
+    <br />
+    <button onclick="generate()">Generate</button>
+    <button onclick="reverse()">Reverse</button>
+    <br />
+    <textarea name="result" id="result" cols="100" rows="20"></textarea>
+    <button onclick="copy()">Copy</button>
+  </form>
+  <p id="coba"></p>
+  <script>
+    let type = document.getElementById("walk-type");
+    let step0 = document.getElementById("step0");
+    let step1 = document.getElementById("step1");
+    let step2 = document.getElementById("step2");
+    let step3 = document.getElementById("step3");
+    let step4 = document.getElementById("step4");
+    let step5 = document.getElementById("step5");
+    let step6 = document.getElementById("step6");
+    let result = document.getElementById("result");
+    function generate() {
+      console.log(type.value);
+      let code = "short " + (type.value == "left" ? "left_step" : "right_step") + "[7][NUM_ACTUATOR] = {";
+      code = code + "\n//    9    10   11    12    13    14    15    16    17    18    19    20    21   22";
+      code = code + "\n\t{" + step0.value.replaceAll("\n", ", ") + "}, // step 0";
+      code = code + "\n\t{" + step1.value.replaceAll("\n", ", ") + "}, // step 1";
+      code = code + "\n\t{" + step2.value.replaceAll("\n", ", ") + "}, // step 2";
+      code = code + "\n\t{" + step3.value.replaceAll("\n", ", ") + "}, // step 3";
+      code = code + "\n\t{" + step4.value.replaceAll("\n", ", ") + "}, // step 4";
+      code = code + "\n\t{" + step5.value.replaceAll("\n", ", ") + "}, // step 5";
+      code = code + "\n\t{" + step6.value.replaceAll("\n", ", ") + "}  // step 6";
+      code = code + "\n};";
+      document.getElementById("result").value = code;
+    }
+
+    function reverse() {
+      let step = [
+        "", "", "", "", "", "", ""
+      ];
+      let code = document.getElementById('result').value;
+      let isRight = code.search('right') > 0 ? true : false;
+      let counter = 0;
+      let start = false;
+      for (let i in code) {
+        if (code[i] == '{') {
+          counter++;
+        }
+        switch (counter) {
+          case 2: step[0] += code[i]; break;
+          case 3: step[1] += code[i]; break;
+          case 4: step[2] += code[i]; break;
+          case 5: step[3] += code[i]; break;
+          case 6: step[4] += code[i]; break;
+          case 7: step[5] += code[i]; break;
+          case 8: step[6] += code[i]; break;
+        }
+
+      }
+      for (let i in step) {
+        step[i] = step[i].replaceAll(', ', "\n");
+        let temp = "";
+        let start = false;
+        for (let j in step[i]) {
+          if (start) temp += step[i][j]
+          if (step[i][j] == '{') start = true;
+          if (step[i][j] == '}') start = false;
+
+        }
+        step[i] = temp;
+      }
+      step0.value = step[0].slice(0, -1);
+      step1.value = step[1].slice(0, -1);
+      step2.value = step[2].slice(0, -1);
+      step3.value = step[3].slice(0, -1);
+      step4.value = step[4].slice(0, -1);
+      step5.value = step[5].slice(0, -1);
+      step6.value = step[6].slice(0, -1);
+      type.value = isRight ? 'right' : 'left'
+    }
+
+    function copy() {
+      result.select();
+      result.setSelectionRange(0, 99999);
+      navigator.clipboard
+        .writeText(result.value)
+        .then(() => {
+          alert("successfully copied");
+        })
+        .catch(() => {
+          alert("something went wrong");
+        });
+    }
+
+  </script>
+</body>
+
+</html>
