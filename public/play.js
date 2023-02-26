@@ -215,11 +215,12 @@ function saveStep(id) {
         let val = document.getElementById('open-' + id).value;
         if (id == 9) id = '09';
         if (walk == "right-selected") {
-            right[stepp][id] = val;
+            right[stepp][id - 9] = val;
+            console.log(right[stepp])
             let command = "VR" + stepp + id + val;
             sendCommand(command);
         } else {
-            left[stepp][id] = val;
+            left[stepp][id - 9] = val;
             let command = "VL" + stepp + id + val;
             sendCommand(command);
         }
