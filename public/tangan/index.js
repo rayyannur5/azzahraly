@@ -28,8 +28,7 @@ async function connectSerial() {
 }
 
 
-let right = []
-let left = []
+let dasar = []
 let isRight = true;
 let startt = false;
 let data = ""
@@ -53,41 +52,27 @@ async function listenToPort() {
             break;
         }
         // value is a string.
-        // console.log("From Arduino : " + value)
-        if (value.startsWith('*')) {
-            connect = true;
-        }
+        console.log("From Arduino : " + value)
+        // if (value.startsWith('*')) {
+        //     connect = true;
+        // }
         if (value.startsWith('R')) {
             readd = true;
         }
 
+        if (value.startsWith('*')) {
+            connect = true;
+        }
         if (connect) {
-
             for (let i = 0; i < value.length; i++) {
-                // console.log(i);
                 data += value[i];
                 if (value[i] == "#") {
-                    if (step == 0) data = data.substring(1);
-                    data = data.slice(0, data.length - 2);
-                    const nilai = data.split(",")
-                    if (isRight) {
-                        right.push(nilai);
-                    } else {
-                        left.push(nilai);
-
-                    }
-                    data = "";
-                    step++;
-                    if (step == 7) {
-                        if (!isRight) {
-                            console.log(right);
-                            console.log(left);
-                            connect = false;
-                            data = ""
-                        }
-                        step = 0;
-                        isRight = false;
-                    }
+                    data = data.slice(1, data.length - 2)
+                    const ar = data.split(',')
+                    dasar = ar;
+                    console.log(dasar);
+                    data = ""
+                    connect = false;
                 }
             }
         }
@@ -100,6 +85,7 @@ async function listenToPort() {
                     const ar = data.split(',')
                     openRead(ar);
                     data = ""
+                    readd = false;
                 }
             }
         }
@@ -109,4 +95,14 @@ async function listenToPort() {
 async function sendCommand(command) {
     // let command = document.getElementById("command").value;
     await writer.write("aaaaa*" + command + "#");
+}
+
+function tempAlert(msg, duration) {
+    var el = document.createElement("div");
+    el.setAttribute("style", "position:absolute;bottom:10%;left:50%;background-color:white; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); padding: 20px;");
+    el.innerHTML = msg;
+    setTimeout(function () {
+        el.parentNode.removeChild(el);
+    }, duration);
+    document.body.appendChild(el);
 }

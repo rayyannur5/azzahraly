@@ -11,12 +11,10 @@
 </head>
 
 <body>
-    <button onclick="connectSerial()">Connect</button>
+    <button class="btn btn-dark" onclick="connectSerial()">Connect</button>
     <br>
-    <input type="text" name="" id="command">
     <!-- <button onclick="sendCommand()">Send</button> -->
     <p id="step">Step Opened : Belum ada</p>
-    <br><br>
 
     <div class="d-flex">
         <select class="form-select me-3" aria-label="Default select example" style="width: 200px" id="walk-select">
@@ -24,13 +22,13 @@
             <option value="left-selected">Left</option>
         </select>
         <button class="btn btn-primary me-3" onclick="play()">Play</button>
-        <button class="btn btn-warning" onclick="read()">On</button>
-        <button class="btn btn-danger" onclick="off()">Off</button>
-        <button class="btn btn-dark" onclick="save()">Save</button>
-        <button class="btn btn-dark" onclick="check()">Check all</button>
-        <button class="btn btn-dark" onclick="uncheck()">Uncheck all</button>
-        <button class="btn btn-dark" onclick="generate()">Generate</button>
-        <button class="btn btn-dark" onclick="newWalk()">New</button>
+        <button class="btn me-1 btn-warning" onclick="read()">On</button>
+        <button class="btn me-1 btn-danger" onclick="off()">Off</button>
+        <button class="btn me-1 btn-dark" onclick="save()">Save</button>
+        <button class="btn me-1 btn-dark" onclick="check()">Check all</button>
+        <button class="btn me-1 btn-dark" onclick="uncheck()">Uncheck all</button>
+        <button class="btn me-1 btn-dark" onclick="generate()">Generate</button>
+        <button class="btn me-1 btn-dark" onclick="newWalk()">New</button>
 
     </div>
 
@@ -47,49 +45,49 @@
                     <td>Step 0</td>
                     <td>
                         <button class="btn btn-warning" onclick="openStep(0)">Open</button>
-                        <button class="btn btn-primary" onclick="playStep(0)">Play</button>
+                        <button class="btn btn-success" onclick="playStep(0)">Send</button>
                     </td>
                 </tr>
                 <tr>
                     <td>Step 1</td>
                     <td>
                         <button class="btn btn-warning" onclick="openStep(1)">Open</button>
-                        <button class="btn btn-primary" onclick="playStep(1)">Play</button>
+                        <button class="btn btn-success" onclick="playStep(1)">Send</button>
                     </td>
                 </tr>
                 <tr>
                     <td>Step 2</td>
                     <td>
                         <button class="btn btn-warning" onclick="openStep(2)">Open</button>
-                        <button class="btn btn-primary" onclick="playStep(2)">Play</button>
+                        <button class="btn btn-success" onclick="playStep(2)">Send</button>
                     </td>
                 </tr>
                 <tr>
                     <td>Step 3</td>
                     <td>
                         <button class="btn btn-warning" onclick="openStep(3)">Open</button>
-                        <button class="btn btn-primary" onclick="playStep(3)">Play</button>
+                        <button class="btn btn-success" onclick="playStep(3)">Send</button>
                     </td>
                 </tr>
                 <tr>
                     <td>Step 4</td>
                     <td>
                         <button class="btn btn-warning" onclick="openStep(4)">Open</button>
-                        <button class="btn btn-primary" onclick="playStep(4)">Play</button>
+                        <button class="btn btn-success" onclick="playStep(4)">Send</button>
                     </td>
                 </tr>
                 <tr>
                     <td>Step 5</td>
                     <td>
                         <button class="btn btn-warning" onclick="openStep(5)">Open</button>
-                        <button class="btn btn-primary" onclick="playStep(5)">Play</button>
+                        <button class="btn btn-success" onclick="playStep(5)">Send</button>
                     </td>
                 </tr>
                 <tr>
                     <td>Step 6</td>
                     <td>
                         <button class="btn btn-warning" onclick="openStep(6)">Open</button>
-                        <button class="btn btn-primary" onclick="playStep(6)">Play</button>
+                        <button class="btn btn-success" onclick="playStep(6)">Send</button>
                     </td>
                 </tr>
             </table>

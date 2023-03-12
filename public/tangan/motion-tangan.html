@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motion Tangan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container d-flex">
+        <button class="btn btn-dark me-3 mb-3" onclick="connectSerial()">Connect</button>
+        <div class="alert alert-warning" style=" padding: 0px; align-self: center; margin: 0px;" role="alert">
+            Connected, Ctrl+Shift+J to open console
+        </div>
+        <div class="flex-column ms-4">
+            <h6 id="current-motion">Currently Open Motion : Not yet</h6>
+            <h6 id="current-step">Currently Open Step : Not yet</h6>
+        </div>
+    </div>
+    <div class="container">
+        <div class="d-flex">
+            <button class="btn btn-primary me-3" onclick="play()">Play</button>
+            <button class="btn  me-1 btn-warning" onclick="read()">On</button>
+            <button class="btn  me-1 btn-danger" onclick="off()">Off</button>
+            <button class="btn  me-1 btn-dark" onclick="saveStep()">Save</button>
+            <button class="btn  me-1 btn-dark" onclick="checkAll()">Check all</button>
+            <button class="btn  me-1 btn-dark" onclick="checkRight()">Check Right</button>
+            <button class="btn  me-1 btn-dark" onclick="checkLeft()">Check Left</button>
+            <button class="btn  me-1 btn-dark" onclick="checkHead()">Check Head</button>
+            <button class="btn  me-1 btn-dark" onclick="uncheck()">Uncheck all</button>
+            <button class="btn  me-1 btn-dark" onclick="generate()">Generate</button>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn me-1 btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                New Motion
+            </button>
+            <button class="btn btn-dark" onclick="ambilDasar()">Ambil Dasar</button>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="newMotionName" placeholder="Nama Motion"
+                                aria-label="Nama Motion" aria-describedby="basic-addon1">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                            onclick="tambahMotion()">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3">
+            <table class="table" id="motionsTable">
+                <tr>
+                    <th>Motion Name</th>
+                    <th>Action</th>
+                </tr>
+            </table>
+        </div>
+        <div class="col-5">
+            <table class="table" id="stepTable">
+                <thead>
+                    <th>Step</th>
+                    <th>Time</th>
+                    <th>Pause</th>
+                    <th>Action</th>
+                </thead>
+                <tbody id="tb">
+
+                </tbody>
+            </table>
+            <button class="btn btn-primary" onclick="addStep()">Tambah</button>
+        </div>
+        <div class="col-2">
+            <table class="table" id="openStep-table">
+                <tr>
+                    <th>ID</th>
+                    <th>Value</th>
+                    <th>Check</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>
+                        <input type="text" name="" style="width: 80px;" id="input-servo-1">
+                    </td>
+                    <td>
+                        <button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo()"> _ </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><input type="text" name="" style="width: 80px;" id="input-servo-2"></td>
+                    <td>
+                        <button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo()"> _ </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><input type="text" name="" style="width: 80px;" id="input-servo-3"></td>
+                    <td><button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo()"> _ </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><input type="text" name="" style="width: 80px;" id="input-servo-4"></td>
+                    <td><button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo()"> _ </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><input type="text" name="" style="width: 80px;" id="input-servo-5"></td>
+                    <td><button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo()"> _ </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td><input type="text" name="" style="width: 80px;" id="input-servo-6"></td>
+                    <td><button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo()"> _ </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td><input type="text" name="" style="width: 80px;" id="input-servo-7"></td>
+                    <td><button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo()"> _ </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td><input type="text" name="" style="width: 80px;" id="input-servo-8"></td>
+                    <td><button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo()"> _ </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td><input type="text" name="" style="width: 80px;" id="input-servo-9"></td>
+                    <td><button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo()"> _ </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td><input type="text" name="" style="width: 80px;" id="input-servo-10"></td>
+                    <td><button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo()"> _ </button>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td><input type="text" name="" style="width: 80px;" id="input-servo-11"></td>
+                    <td>
+                        <button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo()"> _ </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td><input type="text" name="" style="width: 80px;" id="input-servo-12"></td>
+                    <td>
+                        <button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo()"> _ </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td><input type="text" name="" style="width: 80px;" id="input-servo-13"></td>
+                    <td>
+                        <button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo()"> _ </button>
+                    </td>
+                </tr>
+
+            </table>
+            <h3 class="text-center">Pose of Step</h3>
+        </div>
+        <div class="col-2">
+
+            <table class="table" id="readStep-table">
+                <tr>
+                    <th>ID</th>
+                    <th>Value</th>
+                    <th>Check</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td id="val-xl-1"></td>
+                    <td>
+                        <div class="form-check mt-1"><input class="form-check-input" type="checkbox" value=""
+                                id="check-xl-1"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td id="val-xl-2"></td>
+                    <td>
+                        <div class="form-check mt-1"><input class="form-check-input" type="checkbox" value=""
+                                id="check-xl-2"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td id="val-xl-3"></td>
+                    <td>
+                        <div class="form-check mt-1"><input class="form-check-input" type="checkbox" value=""
+                                id="check-xl-3"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td id="val-xl-4"></td>
+                    <td>
+                        <div class="form-check mt-1"><input class="form-check-input" type="checkbox" value=""
+                                id="check-xl-4"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td id="val-xl-5"></td>
+                    <td>
+                        <div class="form-check mt-1"><input class="form-check-input" type="checkbox" value=""
+                                id="check-xl-5"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td id="val-xl-6"></td>
+                    <td>
+                        <div class="form-check mt-1"><input class="form-check-input" type="checkbox" value=""
+                                id="check-xl-6"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td id="val-xl-7"></td>
+                    <td>
+                        <div class="form-check mt-1"><input class="form-check-input" type="checkbox" value=""
+                                id="check-xl-7"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td id="val-xl-8"></td>
+                    <td>
+                        <div class="form-check mt-1"><input class="form-check-input" type="checkbox" value=""
+                                id="check-xl-8"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td id="val-xl-9"></td>
+                    <td>
+                        <div class="form-check mt-1"><input class="form-check-input" type="checkbox" value=""
+                                id="check-xl-9"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td id="val-xl-10"></td>
+                    <td>
+                        <div class="form-check mt-1"><input class="form-check-input" type="checkbox" value=""
+                                id="check-xl-10"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td id="val-xl-11"></td>
+                    <td>
+                        <div class="form-check mt-1"><input class="form-check-input" type="checkbox" value=""
+                                id="check-xl-11"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td id="val-xl-12"></td>
+                    <td>
+                        <div class="form-check mt-1"><input class="form-check-input" type="checkbox" value=""
+                                id="check-xl-12"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td id="val-xl-13"></td>
+                    <td>
+                        <div class="form-check mt-1"><input class="form-check-input" type="checkbox" value=""
+                                id="check-xl-13"></div>
+                    </td>
+                </tr>
+
+            </table>
+            <h3 class="text-center">Pose of Robot</h3>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="index.js"></script>
+    <script src="motion.js"></script>
+    <script src="database.js"></script>
+
+</body>
+
+</html>
