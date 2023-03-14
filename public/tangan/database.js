@@ -291,4 +291,12 @@ function generate() {
     }
     result += '}'
     console.log(result);
+    navigator.clipboard
+        .writeText(result)
+        .then(() => {
+            alert("successfully copied");
+        })
+        .catch(() => {
+            alert("something went wrong");
+        });
 }
