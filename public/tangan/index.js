@@ -20,7 +20,7 @@ async function connectSerial() {
         writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
         writer = textEncoder.writable.getWriter();
         await writer.write("aaaaa*C#");
-
+        document.getElementById('connected').innerHTML = 'Connected, Ctrl+Shift+J to open console'
         await listenToPort();
     } catch (e) {
         alert("Serial Connection Failed" + e);

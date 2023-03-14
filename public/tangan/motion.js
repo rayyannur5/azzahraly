@@ -86,3 +86,20 @@ function ambilDasar() {
         document.getElementById('val-xl-' + i).innerHTML = dasar[Number(i) - Number(1)];
     }
 }
+
+function play() {
+    let banyakStep = Object.keys(dataTerbuka)
+
+    let sendData = 'Y'
+    for (let i in banyakStep) {
+        let banyakData = Object.keys(dataTerbuka[i])
+        for (let j = 0; j < 13; j++) {
+            sendData += dataTerbuka[i][banyakData[j]] + ','
+        }
+        sendData += dataTerbuka[i]['time'] + ','
+        sendData += dataTerbuka[i]['pause'] + ','
+        sendData += ':'
+    }
+    console.log(sendData);
+    sendCommand(sendData)
+}

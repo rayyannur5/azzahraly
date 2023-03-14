@@ -41,7 +41,8 @@ db.collection("motions")
             let row = table.insertRow();
             let cell1 = row.insertCell(0)
             cell1.innerHTML = doc.data().name;
-            row.insertCell(1).innerHTML = " <button class=\"btn btn-primary\" onclick=\"openMotion('" + doc.data().name + "')\">Open</button> <button class=\"btn btn-danger\" onclick=\"deleteMotion('" + doc.data().name + "')\">Delete</button>"
+            // <button class=\"btn btn-danger\" onclick=\"deleteMotion('" + doc.data().name + "')\">Delete</button> 
+            row.insertCell(1).innerHTML = " <button class=\"btn btn-primary\" onclick=\"openMotion('" + doc.data().name + "')\">Open</button> <button class=\"btn btn-warning\" onclick=\"duplicateMotion('" + doc.data().name + "')\">Duplicate</button>"
         });
     });
 
@@ -97,6 +98,21 @@ function openMotion(id) {
         console.log("Error getting document:", error);
     });
 }
+
+
+function duplicateMotion(motion) {
+    db.collection('motions').doc(motion).get().then((doc) => {
+        let datalama = doc.data().value;
+        let namaMotionBaru = motion + ' Copy';
+        db.collection('motions').doc(namaMotionBaru).set({
+            name: namaMotionBaru,
+            value: datalama,
+        }).then(() => {
+            tempAlert('Copied!', 2000)
+        })
+    })
+}
+
 
 function openStep(step) {
     stepOpened = step;
@@ -212,27 +228,29 @@ function addStep() {
             dataTerbuka = data;
         } else {
             // doc.data() will be undefined in this case
-            db.collection('motions').doc(motionOpened).update({
-                value: {
-                    0: {
-                        1: 512,
-                        2: 512,
-                        3: 512,
-                        4: 512,
-                        5: 512,
-                        6: 512,
-                        7: 512,
-                        8: 512,
-                        9: 512,
-                        10: 512,
-                        11: 512,
-                        12: 512,
-                        13: 512,
-                        time: 1000,
-                        pause: 0
-                    }
+            dataTerbuka = {
+                0: {
+                    1: 512,
+                    2: 512,
+                    3: 512,
+                    4: 512,
+                    5: 512,
+                    6: 512,
+                    7: 512,
+                    8: 512,
+                    9: 512,
+                    10: 512,
+                    11: 512,
+                    12: 512,
+                    13: 512,
+                    time: 1000,
+                    pause: 0
                 }
+            }
+            db.collection('motions').doc(motionOpened).update({
+                value: dataTerbuka
             })
+
             let table = document.getElementById('stepTable')
             let row = table.insertRow()
             row.insertCell(0).innerHTML = 0
@@ -299,4 +317,21 @@ function generate() {
         .catch(() => {
             alert("something went wrong");
         });
+}
+
+function saveIDservo(id) {
+    if (motionOpened == undefined) {
+        tempAlert('Open Motion First!', 2000);
+        return;
+    }
+    if (stepOpened == undefined) {
+        tempAlert('Open Step First!', 2000);
+        return;
+    }
+    dataTerbuka[stepOpened][id] = document.getElementById('input-servo-' + id).value
+    db.collection('motions').doc(motionOpened).update({
+        value: dataTerbuka
+    }).then(() => {
+        tempAlert('Saved!', 2000)
+    })
 }

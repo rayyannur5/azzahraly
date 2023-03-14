@@ -13,8 +13,9 @@
 <body>
     <div class="container d-flex">
         <button class="btn btn-dark me-3 mb-3" onclick="connectSerial()">Connect</button>
-        <div class="alert alert-warning" style=" padding: 0px; align-self: center; margin: 0px;" role="alert">
-            Connected, Ctrl+Shift+J to open console
+        <div class="alert alert-warning" style=" padding: 0px; align-self: center; margin: 0px;" id="connected"
+            role="alert">
+
         </div>
         <div class="flex-column ms-4">
             <h6 id="current-motion">Currently Open Motion : Not yet</h6>
@@ -99,62 +100,62 @@
                         <input type="text" name="" style="width: 80px;" id="input-servo-1">
                     </td>
                     <td>
-                        <button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo()"> _ </button>
+                        <button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo(1)"> _ </button>
                     </td>
                 </tr>
                 <tr>
                     <td>2</td>
                     <td><input type="text" name="" style="width: 80px;" id="input-servo-2"></td>
                     <td>
-                        <button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo()"> _ </button>
+                        <button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo(2)"> _ </button>
                     </td>
                 </tr>
                 <tr>
                     <td>3</td>
                     <td><input type="text" name="" style="width: 80px;" id="input-servo-3"></td>
-                    <td><button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo()"> _ </button>
+                    <td><button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo(3)"> _ </button>
                     </td>
                 </tr>
                 <tr>
                     <td>4</td>
                     <td><input type="text" name="" style="width: 80px;" id="input-servo-4"></td>
-                    <td><button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo()"> _ </button>
+                    <td><button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo(4)"> _ </button>
                     </td>
                 </tr>
                 <tr>
                     <td>5</td>
                     <td><input type="text" name="" style="width: 80px;" id="input-servo-5"></td>
-                    <td><button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo()"> _ </button>
+                    <td><button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo(5)"> _ </button>
                     </td>
                 </tr>
                 <tr>
                     <td>6</td>
                     <td><input type="text" name="" style="width: 80px;" id="input-servo-6"></td>
-                    <td><button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo()"> _ </button>
+                    <td><button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo(6)"> _ </button>
                     </td>
                 </tr>
                 <tr>
                     <td>7</td>
                     <td><input type="text" name="" style="width: 80px;" id="input-servo-7"></td>
-                    <td><button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo()"> _ </button>
+                    <td><button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo(7)"> _ </button>
                     </td>
                 </tr>
                 <tr>
                     <td>8</td>
                     <td><input type="text" name="" style="width: 80px;" id="input-servo-8"></td>
-                    <td><button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo()"> _ </button>
+                    <td><button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo(8)"> _ </button>
                     </td>
                 </tr>
                 <tr>
                     <td>9</td>
                     <td><input type="text" name="" style="width: 80px;" id="input-servo-9"></td>
-                    <td><button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo()"> _ </button>
+                    <td><button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo(9)"> _ </button>
                     </td>
                 </tr>
                 <tr>
                     <td>10</td>
                     <td><input type="text" name="" style="width: 80px;" id="input-servo-10"></td>
-                    <td><button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo()"> _ </button>
+                    <td><button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo(10)"> _ </button>
 
                     </td>
                 </tr>
@@ -162,21 +163,21 @@
                     <td>11</td>
                     <td><input type="text" name="" style="width: 80px;" id="input-servo-11"></td>
                     <td>
-                        <button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo()"> _ </button>
+                        <button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo(11)"> _ </button>
                     </td>
                 </tr>
                 <tr>
                     <td>12</td>
                     <td><input type="text" name="" style="width: 80px;" id="input-servo-12"></td>
                     <td>
-                        <button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo()"> _ </button>
+                        <button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo(12)"> _ </button>
                     </td>
                 </tr>
                 <tr>
                     <td>13</td>
                     <td><input type="text" name="" style="width: 80px;" id="input-servo-13"></td>
                     <td>
-                        <button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo()"> _ </button>
+                        <button class="btn btn-dark" style="height: 30px;" onclick="saveIDservo(13)"> _ </button>
                     </td>
                 </tr>
 
