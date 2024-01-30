@@ -94,7 +94,14 @@ async function listenToPort() {
 
 async function sendCommand(command) {
     // let command = document.getElementById("command").value;
-    await writer.write("aaaaa*" + command + "#");
+    await writer.write("aaaaa*");
+    for (let i = 0; i < Math.ceil(command.length/50); i++) {
+        const element = command.substr((i * 50), 50);
+        console.log(element);
+        await writer.write(element);
+    }
+    await writer.write('#');
+    // await writer.write("aaaaa*" + command + "#");
 }
 
 function tempAlert(msg, duration) {
