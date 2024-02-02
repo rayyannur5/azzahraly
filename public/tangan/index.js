@@ -92,6 +92,10 @@ async function listenToPort() {
     }
 }
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 async function sendCommand(command) {
     // let command = document.getElementById("command").value;
     await writer.write("aaaaa*");
@@ -99,6 +103,7 @@ async function sendCommand(command) {
         const element = command.substr((i * 50), 50);
         console.log(element);
         await writer.write(element);
+        await sleep(100);
     }
     await writer.write('#');
     // await writer.write("aaaaa*" + command + "#");
